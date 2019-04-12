@@ -1,0 +1,12 @@
+#!/bin/sh
+
+## hyphop ##
+
+DTS="$1"
+DTB=${DTS%.dts}.dtb
+DTE=${DTS%.dtb}.err
+
+echo "# dtc $DTS > $DTB 2>$DTE">&2
+
+dtc $DTS > $DTB 2>$DTE
+

@@ -7,6 +7,15 @@
 	#size-cells = <0x2>;
 	model = "Rockchip RK3399 Excavator Board (Linux Opensource)";
 
+// hyphop
+
+	chosen {
+		bootargs = "earlycon=uart8250,mmio32,0xff1a0000 swiotlb=1";
+		stdout-path = "serial2:1500000n8";
+	};
+
+//
+	
 	ddr_timing {
 		compatible = "rockchip,ddr-timing";
 		ddr3_speed_bin = <0x15>;

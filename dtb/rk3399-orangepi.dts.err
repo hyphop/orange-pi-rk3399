@@ -1,0 +1,13 @@
+Warning (unit_address_vs_reg): Node /usb@fe800000 has a unit name, but no reg property
+Warning (unit_address_vs_reg): Node /usb@fe900000 has a unit name, but no reg property
+Warning (unit_address_vs_reg): Node /thermal-zones/soc-thermal/trips/trip-point@0 has a unit name, but no reg property
+Warning (unit_address_vs_reg): Node /thermal-zones/soc-thermal/trips/trip-point@1 has a unit name, but no reg property
+Warning (unit_address_vs_reg): Node /phy@e220 has a unit name, but no reg property
+Warning (unit_address_vs_reg): Node /efuse@ff690000/id has a reg or ranges property, but no unit name
+Warning (unit_address_vs_reg): Node /efuse@ff690000/cpul-leakage has a reg or ranges property, but no unit name
+Warning (unit_address_vs_reg): Node /efuse@ff690000/cpub-leakage has a reg or ranges property, but no unit name
+Warning (unit_address_vs_reg): Node /efuse@ff690000/gpu-leakage has a reg or ranges property, but no unit name
+Warning (unit_address_vs_reg): Node /efuse@ff690000/center-leakage has a reg or ranges property, but no unit name
+Warning (unit_address_vs_reg): Node /efuse@ff690000/logic-leakage has a reg or ranges property, but no unit name
+Warning (unit_address_vs_reg): Node /efuse@ff690000/wafer-info has a reg or ranges property, but no unit name
+Warning (unit_address_vs_reg): Node /gpio-keys/button@0 has a unit name, but no reg property

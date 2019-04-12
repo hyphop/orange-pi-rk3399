@@ -6,5 +6,7 @@ DTB="$1"
 DTS=${DTB%.dtb}.dts
 DTE=${DTB%.dtb}.err
 
+echo "# dtc $DTB > $DTS 2>$DTE">&2
+
 dtc $DTB > $DTS 2>$DTE
 

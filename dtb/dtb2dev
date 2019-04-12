@@ -1,0 +1,10 @@
+#!/bin/sh
+
+## hyphop ##
+
+DTB="$1"
+
+[ "$DTB" ] || DTB=rk3399-rockpro64.dtb
+
+scp $DTB root@rock:/boot/dtbs/4.4.167-1169-rockchip-ayufan-g3cde5c624c9c/rockchip/rk3399-test.dtb
+

@@ -908,7 +908,6 @@
 		i2c-scl-falling-time-ns = <0x4>;
 		phandle = <0xf6>;
 
-/*
 		es8316@11 {
 			#sound-dai-cells = <0x0>;
 			compatible = "everest,es8316";
@@ -918,21 +917,6 @@
 			pinctrl-names = "default";
 			pinctrl-0 = <0x3b>;
 			hp-det-gpio = <0x34 0x8 0x1>;
-			phandle = <0xd5>;
-		};
-*/
-	
-		rt5651@1a {
-			#sound-dai-cells = <0x0>;
-			compatible = "rockchip,rt5651";
-			reg = <0x1a>;
-			clocks = <0x8 0x59>;
-			clock-names = "mclk";
-			pinctrl-names = "default";
-			pinctrl-0 = <0x3d>;
-			spk-con-gpio = <0x3e 0xb 0x0>;
-			hp-det-gpio = <0x3f 0x1c 0x1>;
-			linux,phandle = <0xd5>;
 			phandle = <0xd5>;
 		};
 	};
@@ -4115,7 +4099,7 @@
 		BT,wake_host_irq = <0xd1 0x4 0x0>;
 		status = "okay";
 	};
-/*
+
 	es8316-sound {
 		status = "okay";
 		compatible = "simple-audio-card";
@@ -4131,26 +4115,6 @@
 
 		simple-audio-card,codec {
 			sound-dai = <0xd5>;
-		};
-	};
-*/
-
-// hyphop
-
-	rt5651-sound {
-		compatible = "simple-audio-card";
-		simple-audio-card,format = "i2s";
-		simple-audio-card,name = "realtek,rt5651-codec";
-		simple-audio-card,mclk-fs = <0x100>;
-		simple-audio-card,widgets = "Microphone", "Mic Jack", "Headphone", "Headphone Jack";
-		simple-audio-card,routing = "Mic Jack", "MICBIAS1", "IN1P", "Mic Jack", "Headphone Jack", "HPOL", "Headphone Jack", "HPOR";
-
-		simple-audio-card,cpu {
-			sound-dai = <0xd2>;
-		};
-
-		simple-audio-card,codec {
-			sound-dai = <0xd3>;
 		};
 	};
 

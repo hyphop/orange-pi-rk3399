@@ -1,0 +1,6 @@
+#!/bin/sh
+
+## hyphop ##
+
+scp extlinux.conf root@rock:/boot/extlinux/extlinux.conf
+
