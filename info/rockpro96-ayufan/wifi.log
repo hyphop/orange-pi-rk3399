@@ -1,0 +1,9 @@
+[  523.701933] dhd_conf_read_config: Ignore config file /vendor/etc/firmware/config.txt
+[  523.701969] Final fw_path=/vendor/etc/firmware/fw_bcm4356a2_ag.bin
+[  523.701983] Final nv_path=/vendor/etc/firmware/nvram_ap6356.txt
+[  523.701996] Final clm_path=/vendor/etc/firmware/clm.blob
+[  523.702009] Final conf_path=/vendor/etc/firmware/config.txt
+[  523.702636] dhdsdio_download_code_file: Open firmware file failed /vendor/etc/firmware/fw_bcm4356a2_ag.bin
+[  523.702653] _dhdsdio_download_firmware: dongle image file download failed
+[  523.702702] dhd_bus_devreset Failed to download binary to the dongle
+

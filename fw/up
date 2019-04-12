@@ -1,0 +1,17 @@
+#!/bin/sh
+
+## hyphop ##
+
+# upload wifi firmware
+
+# /vendor/etc/firmware/
+# /vendor/etc/firmware/nvram_ap6356.txt
+# /vendor/etc/firmware/nvram_ap6356s.txt
+# /vendor/etc/firmware/fw_bcm4356a2_ag.bin
+# /vendor/etc/firmware/fw_bcm4356a2_ag_apsta.bin
+# /vendor/etc/firmware/fw_bcm4356a2_ag_p2p.bin
+
+rsync -av vendor root@rock:/
+
+ssh root@rock ifconfig wlan0 up
+

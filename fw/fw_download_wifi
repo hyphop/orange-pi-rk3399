@@ -1,0 +1,15 @@
+#!/bin/sh
+
+## hyphop ##
+
+FW=ap6356.fw.tar.gz
+
+cd /tmp
+
+wget -c https://github.com/hyphop/orange-pi-rk3399/releases/download/firmwares/$FW
+
+tar -C / -vxf $FW
+
+ifconfig wlan0 up && echo "[i] OK"&2 && exit 0
+
+echo "[i] ERROR">&2
