@@ -2,5 +2,10 @@ bin
 logs
 ,tmp/*
 tools.bin/*
+tools.bin/*
 git_*
+*.img
+*.xz
+*.gz
+*.tar.gz
 rel

@@ -1,0 +1,55 @@
+#!/bin/sh
+
+## hyphop ##
+
+DEV=eth0
+
+PID_FILE=/tmp/dhcpd.$DEV.pid
+
+runas=runas
+
+$runas $(which pkill) -f $PID_FILE
+
+IPT_RULE="INPUT -p udp -m udp --dport 67 -i $DEV -j ACCEPT"
+
+iptables="$runas $(which iptables)"
+
+$iptables -D $IPT_RULE >/dev/null 2>/dev/null
+$iptables -I $IPT_RULE
+
+[ "$IP" ] || IP=192.168.100.1
+
+[ "$ROUTER" ] || ROUTER=$IP
+[ "$DNS" ] || DNS=8.8.8.8
+[ "$MASK" ] || MASK=255.255.255.0
+
+[ "$TEST" = "1" ] && debug=-d
+[ "$1" = "test" ] && debug=-d
+
+[ "$IP0" ] || { 
+IP0="${IP%.*}.100"
+}
+
+[ "$IP1" ] || { 
+IP1="${IP%.*}.200"
+}
+
+ifconfig="$runas $(which ifconfig)"
+
+$ifconfig $DEV $IP netmask $MASK
+$ifconfig $DEV up
+
+dnsmasq="$runas $(which dnsmasq)"
+
+cmd="$dnsmasq $debug -p0 --user=root	\
+	-z -i $DEV			\
+	--dhcp-option=1,$MASK		\
+	--dhcp-option=3,$ROUTER		\
+	--dhcp-option=6,$DNS		\
+	--dhcp-range=$IP0,$IP1,240h	\
+	--dhcp-leasefile=/tmp/dhcp.$DEV.leases	\
+	-x $PID_FILE"
+
+echo "[i] exec "$cmd"">&2
+
+eval $cmd

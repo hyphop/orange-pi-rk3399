@@ -5,3 +5,5 @@
 + `image_write_xz`      - write xz image to sd card
 + `serial_rk`		- uart console 1500000
 
++ `dhcp_ethnet`		- dhcp server on host 
++ `net_forward`		- route traffic on host
