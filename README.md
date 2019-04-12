@@ -56,6 +56,7 @@ sudo apt-get install glmark2-es2
 
 rock64@rockpro64:~$ DISPLAY=:0 glmark2-es2
 rock64@rockpro64:~$ DISPLAY=:0 gl4es glmark2
+
 ## gpu test OK
 
 # https://www.youtube.com/watch?v=h6yrcdAlRWY
@@ -64,10 +65,16 @@ DISPLAY=:0 gl4es mpv https://www.youtube.com/watch?v=h6yrcdAlRWY
 DISPLAY=:0 gl4es ffplay its\ the\ end\ of\ the\ noise-h6yrcdAlRWY.mp4
 
 ## resize root fs on HOST
+
 # e2fsck -f /dev/mmcblk0p7
 # resize2fs /dev/mmcblk0p7 4G
 # fdisk /dev/mmcblk0
 # e2fsck -f /dev/mmcblk0p7
 ## OK now 4G only
+
+## WIFI fix
+
+curl https://raw.githubusercontent.com/hyphop/orange-pi-rk3399/master/fw/fw_download_wifi | sh -
+
 
 ```

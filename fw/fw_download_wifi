@@ -2,6 +2,9 @@
 
 ## hyphop ##
 
+# USAGE
+# curl https://raw.githubusercontent.com/hyphop/orange-pi-rk3399/master/fw/fw_download_wifi | sh -
+
 FW=ap6356.fw.tar.gz
 
 cd /tmp
