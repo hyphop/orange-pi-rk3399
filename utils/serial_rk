@@ -1,0 +1,29 @@
+#!/bin/sh
+
+## hyphop ##
+
+##
+## rockchip rk3399 serial
+## 
+## USAGE serial_rk [ /dev/ttyUSB0 ]
+## 
+
+sudo=sudo
+
+dev=$1
+
+[ "$1" ] || {
+    dev=/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0
+    [ -e $dev ] || dev=/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AH01CDYG-if00-port0
+}
+
+B=115200
+B=1500000
+
+while [ "1" ] ; do 
+    cmd="screen $dev $B"
+    echo "# $cmd" >&2
+    $sudo $cmd
+    sleep 1
+done
+
