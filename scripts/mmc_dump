@@ -1,0 +1,11 @@
+#!/bin/sh
+
+## hyphop ##
+
+#dd if=/dev/mmcblk0 bs=1M count=5000 | pv > images/rk3399_mmc_dump.$(date +%s).img
+
+IMG="images/rk3399_mmc_dump.$(date +%s).img"
+#sudo dd if=/dev/mmcblk0 bs=1M count=5000 | pv | xz > $IMG.xz
+sudo dd if=/dev/mmcblk0 bs=1M count=5000 | pv | gzip -c > $IMG.gz
+
+

@@ -18,6 +18,7 @@
 NOTE: ethernet 1Gbit buggy! use 100Mbit only
 NOTE: wrong dtb / audio / usb 2.0 
 NOTE: usb2.0 ports not work only USB Type C
+NOTE: power BTN work but same as reboot not suspend
 
 ```
 cd images
@@ -62,5 +63,11 @@ youtube-dl https://www.youtube.com/watch?v=h6yrcdAlRWY
 DISPLAY=:0 gl4es mpv https://www.youtube.com/watch?v=h6yrcdAlRWY
 DISPLAY=:0 gl4es ffplay its\ the\ end\ of\ the\ noise-h6yrcdAlRWY.mp4
 
+## resize root fs on HOST
+# e2fsck -f /dev/mmcblk0p7
+# resize2fs /dev/mmcblk0p7 4G
+# fdisk /dev/mmcblk0
+# e2fsck -f /dev/mmcblk0p7
+## OK now 4G only
 
 ```
