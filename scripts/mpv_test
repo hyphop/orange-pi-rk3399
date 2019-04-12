@@ -1,0 +1,12 @@
+#!/bin/sh
+
+## hyphop ##
+
+## work fine
+
+URL="https://www.youtube.com/watch?list=PLljqyLyyQMLYzy7JgX8K2967IXt0gMegK"
+
+echo "[i] test mpv $URL">&2
+
+DISPLAY=:0 gl4es mpv "$URL"
+
