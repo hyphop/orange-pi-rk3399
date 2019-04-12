@@ -76,5 +76,10 @@ DISPLAY=:0 gl4es ffplay its\ the\ end\ of\ the\ noise-h6yrcdAlRWY.mp4
 
 curl https://raw.githubusercontent.com/hyphop/orange-pi-rk3399/master/fw/fw_download_wifi | sh -
 
+## configure wifi
+
+# nmtui
+# reboot
+
 
 ```
