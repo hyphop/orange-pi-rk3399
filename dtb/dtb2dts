@@ -1,0 +1,10 @@
+#!/bin/sh
+
+## hyphop ##
+
+DTB="$1"
+DTS=${DTB%.dtb}.dts
+DTE=${DTB%.dtb}.err
+
+dtc $DTB > $DTS 2>$DTE
+

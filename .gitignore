@@ -1,0 +1,6 @@
+bin
+logs
+,tmp/*
+tools.bin/*
+git_*
+rel

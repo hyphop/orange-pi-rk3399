@@ -1,0 +1,38 @@
+#!/bin/sh
+
+## hyphop ##
+
+## IMAGE tar.gz WRITE SD
+
+MASK='*.img'
+
+[ "$DEV" ] || DEV=/dev/mmcblk0
+#DEV=/dev/sdc
+IMG="$1"
+REL="./"
+
+[ -f "$IMG" ] || {
+    echo "[e] image $IMG not found">&2
+    exit 0
+}
+
+#s="pv -tpreb"
+
+tar -tvf "$IMG" | while read l; do
+    case "$l" in
+	$MASK)
+	    IM2=${l#*$REL}
+	    echo "[i] $l"
+	    echo "[i] $IM2"
+	    echo "# tar -xf "$IMG" "$REL$IM2" -O | pv | dd of=$DEV">&2
+
+	    tar -xf "$IMG" "$REL$IM2" -O | pv | dd of=$DEV
+
+	    exit 
+
+	;;
+    esac
+
+done
+
+

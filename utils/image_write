@@ -1,0 +1,16 @@
+#!/bin/sh
+
+## hyphop ##
+
+## IMAGE WRITE 2 SD
+
+
+IMG="$1"
+
+[ "$DEV" ] || DEV=/dev/mmcblk0
+
+cmd="dd if=$IMG of=$DEV"
+
+echo "# $cmd">&2
+
+$cmd

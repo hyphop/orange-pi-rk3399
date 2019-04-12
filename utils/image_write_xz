@@ -1,0 +1,22 @@
+#!/bin/sh
+
+## hyphop ##
+
+## IMAGE xz WRITE SD
+
+[ "$DEV" ] || DEV=/dev/mmcblk0
+#DEV=/dev/sdc
+
+IMG="$1"
+
+[ -f "$IMG" ] || {
+    echo "[e] image $IMG not found">&2
+    exit 0
+}
+
+echo "# xz -d - < "$IMG" | pv | dd of=$DEV">&2
+
+xz -d - < "$IMG" | pv | dd of=$DEV
+
+
+
