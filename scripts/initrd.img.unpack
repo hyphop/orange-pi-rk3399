@@ -1,0 +1,17 @@
+#!/bin/sh
+
+## hyphop ##
+
+img="$1"
+
+dir=${img}.dir
+
+[ -d "$dir" ] || mkdir -p $dir
+
+cd $dir
+
+comp=gzip
+
+ls -l1 
+
+$comp -dc ../$img | cpio -idm --no-absolute-filenames

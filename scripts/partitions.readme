@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+#/dev/sdd1      64     8063     8000  3.9M Linux filesystem
+#/dev/sdd2    8064     8191      128   64K Linux filesystem
+#/dev/sdd3    8192    16383     8192    4M Linux filesystem
+#/dev/sdd4   16384    24575     8192    4M Linux filesystem
+#/dev/sdd5   24576    32767     8192    4M Linux filesystem
+#/dev/sdd6   32768   262143   229376  112M Microsoft basic data
+

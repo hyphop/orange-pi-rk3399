@@ -3,9 +3,20 @@
 ## hyphop ##
 
 #dd if=/dev/mmcblk0 bs=1M count=5000 | pv > images/rk3399_mmc_dump.$(date +%s).img
+[ "$DEV" ] || DEV=/dev/mmcblk0
+
+[ -b "$DEV" ] || {
+    echo "[w] not found $DEV">&2
+    exit 1
+}
+
+[ "$COUNT" ] || COUNT=5000
 
 IMG="images/rk3399_mmc_dump.$(date +%s).img"
+
+echo "[i] dump $DEV ($COUNT Mb) to $IMG">&2
+
 #sudo dd if=/dev/mmcblk0 bs=1M count=5000 | pv | xz > $IMG.xz
-sudo dd if=/dev/mmcblk0 bs=1M count=5000 | pv | gzip -c > $IMG.gz
+sudo dd if=$DEV bs=1M count=$COUNT | pv | gzip -c > $IMG.gz
 
 

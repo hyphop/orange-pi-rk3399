@@ -1,0 +1,14 @@
+#!/bin/sh
+
+
+img=initrd
+dir=initrd.dir
+cd $dir
+
+comp=gzip
+#comp=bzip2
+#comp=lzma
+#comp=xz
+
+find . | cpio --create --format='newc' | $comp -c > ../$img.$comp
+

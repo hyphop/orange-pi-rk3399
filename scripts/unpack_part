@@ -1,0 +1,2 @@
+zcat rk3399_mmc_dump.1555384385.img.gz | dd count=1000000 > rk3399_mmc_dump.1555384385.img
+

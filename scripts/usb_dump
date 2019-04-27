@@ -1,0 +1,96 @@
+#!/bin/bash
+
+## hyphop ##
+
+#dd if=/dev/mmcblk0 bs=1M count=5000 | pv > images/rk3399_mmc_dump.$(date +%s).img
+
+[ "$DEV" ] || {
+    DISK=`blkid | grep loader1`
+}
+
+[ "$DEV" ] || DEV="$1"
+
+[ "$DISK" ] && DEV=${DISK:0:8}
+[ "$DEV" ] || DEV=/dev/mmcblk0
+
+
+[ "" ] && {
+
+n=${DEV#/dev/}
+
+S=$(cat /sys/block/$n/size)
+
+echo "[i] $DEV $(((S*512)/(1000*1000*1000)))G">&2
+
+for p in $DEV?; do
+    n=${p#/dev/}
+    d=${n%?}
+    s=$(cat /sys/block/$d/$n/size)
+    echo "[i] $p $n $d $s"
+#
+done
+
+}
+
+T=/tmp/usb_dump.parts
+D=/tmp/dump.parts
+
+[ -d "$D" ] || mkdir -p $D
+
+fdisk  -l $DEV -o Device,Start | egrep ^$DEV | tee $T
+
+i=0
+SS=0
+s=
+
+while read r ; do
+    s=${r#* }
+    n=${r% *}
+    N=${n#/dev/}
+    N=${N/ */}
+    D=${N%?}
+
+#   SS=$((SS+$s))
+#   S=$(cat /sys/block/$D/$N/size)
+
+    echo "$s + $S ==$D-$N"
+    i=$((i+1))
+    s=$((s+S))
+
+#   sudo dd if=$DEV count=$COUNT | pv > $IMG
+    
+    [ "$i" = "6" ] && {
+	break
+    }
+
+done < $T
+
+COUNT=$((s))
+
+#echo "++ $s"
+
+exit 0
+
+#/dev/sdd1      64     8063     8000  3.9M Linux filesystem
+#/dev/sdd2    8064     8191      128   64K Linux filesystem
+#/dev/sdd3    8192    16383     8192    4M Linux filesystem
+#/dev/sdd4   16384    24575     8192    4M Linux filesystem
+#/dev/sdd5   24576    32767     8192    4M Linux filesystem
+#/dev/sdd6   32768   262143   229376  112M Microsoft basic data
+
+[ -b "$DEV" ] || {
+    echo "[w] not found $DEV">&2
+    exit 1
+}
+
+#[ "$COUNT" ] || COUNT=5000
+
+IMG="/tmp/rk3399_mmc_dump.$(date +%s).img"
+
+echo "[i] dump $DEV ($COUNT blocks) to $IMG">&2
+
+#sudo dd if=/dev/mmcblk0 bs=1M count=5000 | pv | xz > $IMG.xz
+
+sudo dd if=$DEV count=$COUNT | pv > $IMG
+
+#sudo dd if=$DEV count=$COUNT | pv | gzip -c > $IMG.gz

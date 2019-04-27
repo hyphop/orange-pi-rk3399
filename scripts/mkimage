@@ -1,0 +1,55 @@
+#!/bin/sh
+
+## hyphop ##
+
+DEV=/dev/mmcblk0
+
+dd="runas $(which dd)"
+
+args="conv=notrunc"
+
+s="pv -tpreb"
+
+LOG="/tmp/mkimage.log"
+
+$dd of=$DEV $args seek=0 count=1 if=/dev/zero  2>>$LOG
+
+echo "c
+n
+p
+1
+64
++7999
+n
+p
+2
+8064
++127
+n
+p
+3
+8192
++8191
+n
+p
+32768
++50M
+w
+q
+" | fdisk $DEV
+#fdisk /dev/
+
+
+exit 0
+
+24575
+n
+e
+24576
+32767
+
+$s bin/idbloader.img	| $dd of=$DEV $args seek=64 2>>$LOG
+$s bin/uboot.img	| $dd of=$DEV $args seek=16384 2>>$LOG
+$s bin/trust.img	| $dd of=$DEV $args seek=24576 2>>$LOG
+
+cat $LOG

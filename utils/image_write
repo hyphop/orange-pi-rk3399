@@ -9,8 +9,8 @@ IMG="$1"
 
 [ "$DEV" ] || DEV=/dev/mmcblk0
 
-cmd="dd if=$IMG of=$DEV"
+cmd="dd if=$IMG "
 
 echo "# $cmd">&2
 
-$cmd
+$cmd | pv > $DEV

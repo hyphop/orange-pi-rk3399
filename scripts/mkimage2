@@ -1,0 +1,19 @@
+#!/bin/sh
+
+## hyphop ##
+
+DEV=/dev/mmcblk0
+
+dd="runas $(which dd)"
+
+args="conv=notrunc"
+
+s="pv -tpreb"
+
+LOG="/tmp/mkimage.log"
+
+$s bin/idbloader.img	| $dd of=$DEV $args seek=64 2>>$LOG
+$s bin/uboot.img	| $dd of=$DEV $args seek=16384 2>>$LOG
+$s bin/trust.img	| $dd of=$DEV $args seek=24576 2>>$LOG
+
+cat $LOG
